@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="470" Id="MDCM060_MultiVndrInqPopup" Left="8" OnLoadCompleted="form_OnLoadCompleted" OnSize="form_OnSize" PidAttrib="7" Title="무인편의점터미널관리팝업" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsMultiVndrInqInfoList" UseClientLayout="1">
+				<Contents>
+					<colinfo id="chk" size="256" summ="default" type="STRING"/>
+					<colinfo id="terminalId" size="256" summ="default" type="STRING"/>
+					<colinfo id="bizplCd" size="256" summ="default" type="STRING"/>
+					<colinfo id="bizplNm" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsMultiVndrInqInfoList_Temp"></Dataset>
+			<Dataset DataSetType="Dataset" Id="dsCommonValidator" UseClientLayout="1">
+				<Contents>
+					<colinfo id="dsName" size="100" summ="default" type="STRING"/>
+					<colinfo id="colName" size="100" summ="default" type="STRING"/>
+					<colinfo id="expression" size="500" summ="default" type="STRING"/>
+					<record>
+						<colName>terminalId</colName>
+						<dsName>dsMultiVndrInqInfoList</dsName>
+						<expression>required;name=터미널ID</expression>
+					</record>
+					<record>
+						<colName></colName>
+						<dsName></dsName>
+						<expression></expression>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Shape BKColor="user12" Bottom="470" Height="470" Id="popBox" Left="0" LineColor="user51" LineWidth="5" Right="700" RoundHeight="0" RoundUnit="Pixel" RoundWidth="0" TabOrder="6" Top="0" Type="Rectangle" Width="700"></Shape>
+		<Div BKColor="user9" Height="32" Id="dvPageTitle" TabOrder="2" Text="Div0" Width="700">
+			<Contents>
+				<Image FillType="STRETCH" Height="32" Id="imHeadTitle" ImageID="pop_bullet" TabOrder="1" Width="25"></Image>
+				<Static Height="22" Id="stTitle" Left="6" Style="style_st_Title_pop" TabOrder="1" Text="터미널ID관리" Top="6" VAlign="Middle" Width="194"></Static>
+			</Contents>
+		</Div>
+		<Div Height="40" Id="dvMultiVndrInqCond" Left="20" TabOrder="3" Text="Div0" Top="47" Width="660">
+			<Contents>
+				<Shape BKColor="user8" Bottom="40" Height="40" Id="shBox" Left="0" LineColor="user9" LineWidth="2" Right="660" RoundHeight="4" RoundUnit="Pixel" RoundWidth="4" TabOrder="1" Top="0" Type="Rectangle" Width="660"></Shape>
+				<Static Align="Right" Column="bizplCd" DomainID="무인편의점" Height="20" Id="stbizplCd" Style="style_st_item" TabOrder="2" Text="무인편의점" Top="10" VAlign="Middle" Width="88"></Static>
+				<Edit AutoSelect="TRUE" BKColor="white" Border="Flat" CheckLength="Byte" Column="bizplNm" Height="20" Id="edBizplNm" Left="96" LeftMargin="4" MaxLength="26" Readonly="TRUE" RightMargin="4" Style="style_ed_readonly" TabOrder="3" Top="10" Width="120"></Edit>
+			</Contents>
+		</Div>
+		<Shape Bottom="104" Height="2" Id="shMultiVndrInqInfoList" Left="19" LineColor="user9" LineWidth="2" Right="681" TabOrder="4" Top="102" Type="Rectangle" Width="662"></Shape>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" AutoScrollBar="Vert" BindDataset="dsMultiVndrInqInfoList" BkColor2="user21" BoldHead="FALSE" Border="Flat" Bottom="414" Color="user18" ColSizing="TRUE" Editable="TRUE" Enable="true" EndLineColor="default" HeadBorder="Flat" HeadHeight="24" Height="310" Id="grMultiVndrInqInfoList" InputPanel="FALSE" Left="20" LineColor="default" MinWidth="100" OnCellDBLClick="grMultiVndrInqInfoList_OnCellDblClick" OnKeyDown="grMultiVndrInqInfoList_OnKeyDown" Right="680" RowHeight="21" Style="style_grd" TabOrder="5" TabStop="true" Top="104" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="660">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="30"/>
+						<col width="80"/>
+						<col width="206"/>
+					</columns>
+					<head>
+						<cell bkimagealign="stretch" col="0" color="user52" display="checkbox" edit="checkbox"/>
+						<cell bkimagealign="stretch" col="1" color="user52" display="text" domainid="일련번호" text="일련번호"/>
+						<cell bkimagealign="stretch" col="2" color="user52" display="text" domainid="터미널&#32;ID" text="터미널&#32;ID"/>
+					</head>
+					<body>
+						<cell col="0" colid="chk" display="checkbox" edit="checkbox"/>
+						<cell align="center" bkimageid='expr:gfnSetGridExpr(dsMultiVndrInqInfoList,&#32;currow,&#32;&quot;Image&quot;)' col="1" colid="seq" color='expr:gfnSetGridExpr(dsMultiVndrInqInfoList,&#32;currow,&#32;&quot;Color&quot;)' display="text" expr='gfnSetGridExpr(dsMultiVndrInqInfoList,&#32;currow,&#32;&quot;Display&quot;)' font='expr:gfnSetGridExpr(dsMultiVndrInqInfoList,&#32;currow,&#32;&quot;Font&quot;)'/>
+						<cell align="center" col="2" colid="terminalId" display="text" edit="expr:gfnSetGridEditExpr(dsMultiVndrInqInfoList,&#32;currow,&#32;&apos;normal&apos;)" limit="8"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Button ButtonStyle="TRUE" Cursor="HAND" Height="20" Id="btnRowAdd" ImageID="btn_add" Left="549" OnClick="btnRowAdd_OnClick" TabOrder="6" ToolTipText="행추가" Top="431" TopMargin="1" Width="60"></Button>
+		<Button ButtonStyle="TRUE" Cursor="HAND" Height="20" Id="btnRowDel" ImageID="btn_del" Left="616" OnClick="btnRowDel_OnClick" TabOrder="7" ToolTipText="행삭제" Top="431" TopMargin="1" Width="60"></Button>
+		<Div Height="32" Id="dvRun" Left="535" Style="input" TabOrder="7" Text="Div0" Url="main::PopCommButtonRetrieveSaveClose.xml" Width="160">
+			<Contents></Contents>
+		</Div>
+	</Form>
+	<Script><![CDATA[
+
+	]]></Script>
+</Window>
